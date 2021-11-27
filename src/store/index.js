@@ -4,8 +4,16 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
-  modules: {},
+    state: {
+        activeModal: false
+    },
+    mutations: {
+        isActiveModal(state, payload) {
+            state.activeModal = payload.activeModal
+        }
+    },
+    actions: {},
+    getters: {
+        isActiveModal: state => state.activeModal
+    },
 });

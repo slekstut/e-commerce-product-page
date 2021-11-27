@@ -50,25 +50,44 @@ body {
             .backwards {
                 position: absolute;
                 top: 50%;
-                left: -.5rem;
+                left: -4%;
                 background-color: $white;
-                border-radius: 50%;
-                width: 3rem;
-                height: 3rem;
+                margin: 0;
+                border-radius: 2rem;
+                padding: .4rem .6rem;
+                .left-arrow {
+                    fill: none;
+                    stroke: $black;
+                    stroke-width: 3;
+                    transform: translateX(-0.1em) translateY(0.1em);
+                }
                 &:hover {
                     cursor: pointer;
                 }
-                svg {
-                    display: grid;
-                    place-content: center;
-                    fill: $white;
+                &:hover .left-arrow {
+                    stroke: $orange;
+                    cursor: pointer;
                 }
             }
             .forwards {
                 position: absolute;
                 top: 50%;
-                right: -.5rem;
+                right: -4%;
+                background-color: $white;
+                margin: 0;
+                border-radius: 2rem;
+                padding: .4rem .6rem;
                 &:hover {
+                    cursor: pointer;
+                }
+                .right-arrow {
+                    fill: none;
+                    stroke: $black;
+                    stroke-width: 3;
+                    transform: translateX(0.1em) translateY(0.1em);
+                }
+                &:hover .right-arrow {
+                    stroke: $orange;
                     cursor: pointer;
                 }
             }
