@@ -6,7 +6,6 @@ body {
     position: fixed;
     z-index: 2000;
     background-color: rgba(0, 0, 0, .7);
-    // opacity: .75;
     top: 0;
     left: 0;
     width: 100%;
@@ -50,11 +49,11 @@ body {
             .backwards {
                 position: absolute;
                 top: 50%;
-                left: -4%;
+                left: -5%;
                 background-color: $white;
                 margin: 0;
                 border-radius: 2rem;
-                padding: .4rem .6rem;
+                padding: .6rem .8rem;
                 .left-arrow {
                     fill: none;
                     stroke: $black;
@@ -72,11 +71,11 @@ body {
             .forwards {
                 position: absolute;
                 top: 50%;
-                right: -4%;
+                right: -5%;
                 background-color: $white;
                 margin: 0;
                 border-radius: 2rem;
-                padding: .4rem .6rem;
+                padding: .6rem .8rem;
                 &:hover {
                     cursor: pointer;
                 }

@@ -5,15 +5,15 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        activeModal: false
+        showModal: true
     },
     mutations: {
-        isActiveModal(state, payload) {
-            state.activeModal = payload.activeModal
+        closeModal(state) {
+            state.showModal = !state.showModal
         }
     },
     actions: {},
     getters: {
-        isActiveModal: state => state.activeModal
+        showModal: state => state.showModal
     },
 });

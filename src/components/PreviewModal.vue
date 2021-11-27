@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="showModal">
     <div class="preview__modal">
       <div class="preview__wrapper">
         <div class="preview__container">
@@ -7,7 +7,7 @@
             <img src="../assets/img/image-product-1.jpg" alt="product-1" />
             <div
               class="preview__container-close"
-              @click="activeModal = !activeModal"
+              @click="closeModal"
             >
               <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -18,11 +18,13 @@
               </svg>
             </div>
             <div class="backwards">
-              <svg class="left-arrow" width="12" height="18" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M11 1 3 9l8 8"
-                  fill-rule="evenodd"
-                />
+              <svg
+                class="left-arrow"
+                width="12"
+                height="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M11 1 3 9l8 8" fill-rule="evenodd" />
               </svg>
             </div>
             <div class="forwards">
@@ -42,22 +44,28 @@
   </div>
 </template>
 
- <script>
+<script>
+// import MapState from 'vuex';
+
 export default {
+  data() {
+    return {
+    };
+  },
   methods: {
-    setModalStatus() {
-      this.$store.dispatch("setModalStatus");
-    },
+      closeModal() {
+          this.$store.commit('closeModal');
+      }
   },
   computed: {
-    isActiveModal() {
-      return this.$store.getters.isActiveModal;
-    },
-  },
+      showModal() {
+          return this.$store.state.showModal;
+      }
+  }
 };
 </script>
 
- <style lang="scss">
+<style lang="scss">
 @import "../assets/styles/variables.scss";
 @import "../assets/styles/previewmodal.scss";
 </style>
