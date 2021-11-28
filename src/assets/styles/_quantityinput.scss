@@ -1,0 +1,67 @@
+.input-group {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 3rem;
+    div {
+        grid-column: span 2;
+        input {
+            width: 3rem;
+            background-color: $lightGrayishBlue;
+            color: $orange;
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: .9rem 0;
+            &:first-child {
+                border-top-left-radius: 5px;
+                border-bottom-left-radius: 5px;
+                &:hover {
+                    opacity: .75;
+                    cursor: pointer;
+                }
+            }
+            &:last-child {
+                border-top-right-radius: 5px;
+                border-bottom-right-radius: 5px;
+                &:hover {
+                    opacity: .75;
+                    cursor: pointer;
+                }
+            }
+        }
+        .quantity-field {
+            color: $darkBlue;
+            width: 3rem;
+            text-align: center;
+            font-weight: 700;
+        }
+    }
+    button {
+        grid-column: span 3;
+        border: none;
+        width: 100%;
+        color: $white;
+        background-color: $orange;
+        padding: .8rem 0;
+        border-radius: .5rem;
+        font-size: 1.1rem;
+        &:hover {
+            cursor: pointer;
+            opacity: .75;
+        }
+        span svg {
+            padding-right: 1rem;
+            path {
+                fill: $white;
+            }
+        }
+    }
+}
+
+.disabled {
+    color: $darkGrayishBlue;
+    cursor: not-allowed;
+}

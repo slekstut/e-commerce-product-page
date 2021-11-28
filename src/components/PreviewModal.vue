@@ -45,7 +45,6 @@
 </template>
 
 <script>
-// import MapState from 'vuex';
 
 export default {
   data() {
@@ -54,14 +53,14 @@ export default {
   },
   methods: {
       closeModal() {
-          this.$store.commit('closeModal');
+          this.$store.commit('toggleModal');
       }
   },
   computed: {
       showModal() {
           return this.$store.state.showModal;
       }
-  }
+  },
 };
 </script>
 

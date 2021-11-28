@@ -1,6 +1,5 @@
 .content__wrapper {
-    // height: 100%;
-    margin-top: 5rem;
+    margin: 5rem 0;
     width: 100%;
     z-index: 0;
     display: flex;
@@ -13,8 +12,10 @@
         gap: 3em;
         .preview__content {
             display: grid;
-            grid-template-columns: 1fr;
+            grid-template-columns: repeat(auto-fit, minmax(1fr, 30em));
             gap: 1.5em;
+            justify-items: center;
+            align-items: center;
             .preview__main {
                 display: flex;
                 align-items: center;
@@ -24,16 +25,20 @@
                     max-width: 30rem;
                     height: auto;
                     border-radius: 5%;
+                    &:hover {
+                        cursor: pointer;
+                    }
                 }
             }
             .preview__thumbnail {
                 display: grid;
                 grid-template-columns: repeat(auto-fit, minmax(1em, 1fr));
                 grid-template-rows: 1fr;
+                max-width: 30em;
+                width: 100%;
                 gap: .5em;
-                justify-content: space-evenly;
                 justify-items: center;
-                align-items: start;
+                align-items: center;
                 .img-container {
                     img {
                         width: 100%;
@@ -97,62 +102,6 @@
                     -webkit-text-decoration-line: line-through;
                     /* Safari */
                     text-decoration-line: line-through;
-                }
-                .input-group {
-                    display: grid;
-                    grid-template-columns: repeat(5, 1fr);
-                    gap: 0;
-                    justify-content: space-between;
-                    width: 100%;
-                    margin-top: 3rem;
-                    div {
-                        grid-column: span 2;
-                        input {
-                            width: 3rem;
-                            background-color: $lightGrayishBlue;
-                            color: $orange;
-                            border: none;
-                            font-weight: 700;
-                            font-size: 1.1rem;
-                            padding: .9rem 0;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            &:first-child {
-                                border-top-left-radius: 5px;
-                                border-bottom-left-radius: 5px;
-                            }
-                            &:last-child {
-                                border-top-right-radius: 5px;
-                                border-bottom-right-radius: 5px;
-                            }
-                        }
-                        .quantity-field {
-                            color: $darkBlue;
-                            width: 3rem;
-                            text-align: center;
-                            font-weight: 700;
-                        }
-                    }
-                    button {
-                        grid-column: span 3;
-                        border: none;
-                        width: 100%;
-                        color: $white;
-                        background-color: $orange;
-                        padding: .8rem 0;
-                        border-radius: .5rem;
-                        font-size: 1.1rem;
-                        &:hover {
-                            cursor: pointer;
-                        }
-                        span svg {
-                            padding-right: 1rem;
-                            path {
-                                fill: $white;
-                            }
-                        }
-                    }
                 }
             }
         }

@@ -5,10 +5,10 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
-        showModal: true
+        showModal: false
     },
     mutations: {
-        closeModal(state) {
+        toggleModal(state) {
             state.showModal = !state.showModal
         }
     },
