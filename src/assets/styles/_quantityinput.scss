@@ -31,6 +31,9 @@
                     cursor: pointer;
                 }
             }
+            &:focus {
+                outline: none;
+            }
         }
         .quantity-field {
             color: $darkBlue;
@@ -61,7 +64,16 @@
     }
 }
 
-.disabled {
-    color: $darkGrayishBlue;
-    cursor: not-allowed;
+.increase-disabled {
+    &:hover {
+        color: $darkGrayishBlue;
+        cursor: not-allowed !important;
+    }
+}
+
+.decrease-disabled {
+    &:hover {
+        color: $darkGrayishBlue;
+        cursor: not-allowed !important;
+    }
 }

@@ -3,29 +3,28 @@
     <div class="input-group">
       <div>
         <input
-          @click="changeQuantity(-1)"
+          @click="decrement"
           type="button"
           value="-"
-          class="btn-plus"
-          :class="{disabled: isDisabled }"
+          :class="{ 'decrease-disabled': decIsDisabled }"
           data-field="quantity"
         />
         <input
-            @keypress="validateNumber"
+          @keypress="validateNumber"
           type="number"
           step="1"
           :min="quantityMin"
           :max="quantityMax"
-          :value="quantity"
+          v-model="quantity"
           name="quantity"
           class="quantity-field"
+          onkeydown="return false"
         />
         <input
-          @click="changeQuantity(1)"
+          @click="increment"
           type="button"
           value="+"
-          class="btn-minus"
-          :class="{disabled: isDisabled }"
+          :class="{ 'increase-disabled': incIsDisabled }"
           data-field="quantity"
         />
       </div>
@@ -49,30 +48,37 @@ export default {
     return {
       quantity: 1,
       quantityMin: 1,
-      quantityMax: 4,
-      isDisabled: false
-    }
+      quantityMax: 5,
+      incIsDisabled: false,
+      decIsDisabled: false,
+      stepIncr: 1,
+      stepDecr: -1,
+    };
   },
   methods: {
-    changeQuantity(el) {
-      if (
-        this.quantity >= this.quantityMin &&
-        this.quantity <= this.quantityMax
-      ) {
-        this.quantity += el;
-      } else {
-          this.isDisabled = true;
-      }
-  },
-    validateNumber: event => {
+    increment() {
+      this.decIsDisabled = false;
+      this.quantity =
+        this.quantity === this.quantityMax
+          ? this.quantityMax
+          : this.quantity + 1;
+      this.incIsDisabled = this.quantity === this.quantityMax ? true : false;
+    },
+    decrement() {
+      this.incIsDisabled = false;
+      this.quantity =
+        this.quantity === this.quantityMin
+          ? this.quantityMin
+          : this.quantity - 1;
+      this.decIsDisabled = this.quantity === this.quantityMin ? true : false;
+    },
+    validateNumber: (event) => {
       let keyCode = event.keyCode;
       if (keyCode < 48 || keyCode > 57) {
         event.preventDefault();
       }
-
-    }
     },
-
+  },
 };
 </script>
 
