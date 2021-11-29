@@ -22,13 +22,40 @@ body {
             margin: 0 auto;
             background-color: transparent;
             display: grid;
-            place-content: center;
+            justify-items: center;
+            align-items: center;
             .preview__main {
                 position: relative;
+                margin-bottom: 1.5rem;
                 img {
                     width: 100%;
                     display: block;
                     border-radius: 4%;
+                }
+            }
+            .preview__thumbnail {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(1em, 1fr));
+                grid-template-rows: 1fr;
+                max-width: 30em;
+                width: 80%;
+                gap: .5em;
+                justify-items: center;
+                align-items: center;
+                .img-container {
+                    img {
+                        width: 100%;
+                        max-width: 6rem;
+                        height: auto;
+                        display: block;
+                        border-radius: 8%;
+                        overflow: hidden;
+                        &:hover {
+                            opacity: .6;
+                            cursor: pointer;
+                            background-color: $white !important;
+                        }
+                    }
                 }
             }
             .img-container {
@@ -41,9 +68,11 @@ body {
                 position: absolute;
                 right: 0;
                 top: -2rem;
+                &:hover {
+                    cursor: pointer;
+                }
                 svg path {
                     fill: $white;
-                    cursor: pointer;
                 }
             }
             .backwards {

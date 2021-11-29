@@ -25,7 +25,6 @@ export default new Vuex.Store({
                 5 :
                 state.quantity + payload.amount;
             state.incIsDisabled = state.quantity === 5 ? true : false;
-            // return state.quantity = state.quantity + payload.amount
         },
         decrement(state, payload) {
             state.incIsDisabled = false;

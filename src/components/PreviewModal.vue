@@ -38,6 +38,40 @@
               </svg>
             </div>
           </div>
+          <div class="preview__thumbnail">
+            <div class="selected">
+              <div class="img-container">
+                <img
+                  src="../assets/img/image-product-1-thumbnail.jpg"
+                  alt="product-1-thumbnail"
+                />
+              </div>
+            </div>
+            <div class="background-white">
+              <div class="img-container">
+                <img
+                  src="../assets/img/image-product-2-thumbnail.jpg"
+                  alt="product-1-thumbnail"
+                />
+              </div>
+            </div>
+            <div class="background-white">
+              <div class="img-container">
+                <img
+                  src="../assets/img/image-product-3-thumbnail.jpg"
+                  alt="product-1-thumbnail"
+                />
+              </div>
+            </div>
+            <div class="background-white">
+              <div class="img-container">
+                <img
+                  src="../assets/img/image-product-4-thumbnail.jpg"
+                  alt="product-1-thumbnail"
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
