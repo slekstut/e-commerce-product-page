@@ -3,7 +3,7 @@
     <div class="input-group">
       <div>
         <input
-          @click="decrement"
+          @click="decrementCounter()"
           type="button"
           value="-"
           :class="{ 'decrease-disabled': decIsDisabled }"
@@ -13,15 +13,15 @@
           @keypress="validateNumber"
           type="number"
           step="1"
-          :min="quantityMin"
-          :max="quantityMax"
+          :min="1"
+          :max="5"
           v-model="quantity"
           name="quantity"
           class="quantity-field"
           onkeydown="return false"
         />
         <input
-          @click="increment"
+          @click="incrementCounter()"
           type="button"
           value="+"
           :class="{ 'increase-disabled': incIsDisabled }"
@@ -43,34 +43,19 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
-      quantity: 1,
-      quantityMin: 1,
-      quantityMax: 5,
-      incIsDisabled: false,
-      decIsDisabled: false,
-      stepIncr: 1,
-      stepDecr: -1,
     };
   },
   methods: {
-    increment() {
-      this.decIsDisabled = false;
-      this.quantity =
-        this.quantity === this.quantityMax
-          ? this.quantityMax
-          : this.quantity + 1;
-      this.incIsDisabled = this.quantity === this.quantityMax ? true : false;
+    incrementCounter() {
+      this.$store.dispatch("increment", { amount: 1 });
     },
-    decrement() {
-      this.incIsDisabled = false;
-      this.quantity =
-        this.quantity === this.quantityMin
-          ? this.quantityMin
-          : this.quantity - 1;
-      this.decIsDisabled = this.quantity === this.quantityMin ? true : false;
+    decrementCounter() {
+      this.$store.dispatch("decrement", { amount: 1 });
     },
     validateNumber: (event) => {
       let keyCode = event.keyCode;
@@ -79,9 +64,14 @@ export default {
       }
     },
   },
+  computed: mapState({
+    quantity: (state) => state.quantity,
+    incIsDisabled: (state) => state.incIsDisabled,
+    decIsDisabled: state => state.decIsDisabled
+  }),
 };
 </script>
 
 <style lang="scss" scoped>
-@import "../assets/styles/_quantityinput.scss";
+@import "../assets/styles/quantityinput.scss";
 </style>
