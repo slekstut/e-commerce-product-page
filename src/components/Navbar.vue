@@ -50,7 +50,7 @@
             </div>
           </div>
         </div>
-        <div class="header__menu">
+        <div class="header__avatar">
           <img src="../assets/img/image-avatar.png" alt="profile-avatars" />
         </div>
       </div>
