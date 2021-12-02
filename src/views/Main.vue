@@ -1,43 +1,26 @@
 <template>
   <div>
     <div class="content__wrapper">
-    <PreviewModal></PreviewModal>
+      <PreviewModal></PreviewModal>
       <div class="content__inner">
         <div class="preview__content">
           <div class="preview__main" @click="openModal">
-            <img src="../assets/img/image-product-1.jpg" alt="product-1" />
+            <img
+              :src="require(`../assets/img/image-product-${mainPicture}.jpg`)"
+              alt="`product-${mainPicture}`"
+            />
           </div>
           <div class="preview__thumbnail">
-            <div class="selected">
-              <div class="img-container">
-                <img
-                  src="../assets/img/image-product-1-thumbnail.jpg"
-                  alt="product-1-thumbnail"
-                />
-              </div>
-            </div>
-            <div>
-              <div class="img-container">
-                <img
-                  src="../assets/img/image-product-2-thumbnail.jpg"
-                  alt="product-1-thumbnail"
-                />
-              </div>
-            </div>
-            <div>
-              <div class="img-container">
-                <img
-                  src="../assets/img/image-product-3-thumbnail.jpg"
-                  alt="product-1-thumbnail"
-                />
-              </div>
-            </div>
-            <div class="img-container">
-              <div>
-                <img
-                  src="../assets/img/image-product-4-thumbnail.jpg"
-                  alt="product-1-thumbnail"
-                />
+            <div v-for="thumbnail in thumbnails" :key="thumbnail">
+              <div :class="{ selected: thumbnail == activeThumbnail }">
+                <div class="img-container" @click="showSelected(thumbnail)">
+                  <img
+                    :src="
+                      require(`../assets/img/image-product-${thumbnail}-thumbnail.jpg`)
+                    "
+                    alt="`product-${thumbnail}-thumbnail`"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -55,14 +38,14 @@
             </div>
           </div>
           <div class="description__options">
-            <div>
+            <div class="spaced-between">
               <div class="description__price">
                 <h2>$125.00</h2>
                 <p>50%</p>
               </div>
               <h4>$250.00</h4>
-              <QuantityInput></QuantityInput>
             </div>
+              <QuantityInput></QuantityInput>
           </div>
         </div>
       </div>
@@ -71,23 +54,30 @@
 </template>
 
 <script>
-import PreviewModal from "../components/PreviewModal.vue"
-import QuantityInput from "../components/QuantityInput.vue"
+import PreviewModal from "../components/PreviewModal.vue";
+import QuantityInput from "../components/QuantityInput.vue";
 
 export default {
   components: {
     PreviewModal,
-    QuantityInput
+    QuantityInput,
   },
   data() {
     return {
-    }
+      thumbnails: 4,
+      activeThumbnail: 2,
+      mainPicture: 1,
+    };
   },
   methods: {
     openModal() {
-      this.$store.commit('toggleModal');
-    }
-  }
+      this.$store.commit("toggleModal");
+    },
+    showSelected(i) {
+      this.activeThumbnail = i;
+      this.mainPicture = i;
+    },
+  },
 };
 </script>
 

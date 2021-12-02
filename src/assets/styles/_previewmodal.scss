@@ -27,10 +27,11 @@ body {
             .preview__main {
                 position: relative;
                 margin-bottom: 1.5rem;
-                img {
+                .main__image {
                     width: 100%;
                     display: block;
                     border-radius: 4%;
+                    height: 100%;
                 }
             }
             .preview__thumbnail {
@@ -50,6 +51,7 @@ body {
                         display: block;
                         border-radius: 8%;
                         overflow: hidden;
+                        background-color: $white;
                         &:hover {
                             opacity: .6;
                             cursor: pointer;
@@ -60,6 +62,9 @@ body {
             }
             .img-container {
                 width: 4rem;
+                background-color: $white;
+                border-radius: 8%;
+                opacity: 1;
             }
             &-close {
                 width: 1.2rem;

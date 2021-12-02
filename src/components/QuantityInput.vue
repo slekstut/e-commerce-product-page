@@ -1,12 +1,13 @@
 <template>
   <div>
-    <div class="input-group">
-      <div>
+    <div class="input__group">
+      <div class="input__container">
         <input
           @click="decrementCounter()"
           type="button"
           value="-"
           :class="{ 'decrease-disabled': decIsDisabled }"
+          class="split-equal"
           data-field="quantity"
         />
         <input
@@ -17,7 +18,7 @@
           :max="5"
           v-model="quantity"
           name="quantity"
-          class="quantity-field"
+          class="quantity-field split-equal"
           onkeydown="return false"
         />
         <input
@@ -25,6 +26,7 @@
           type="button"
           value="+"
           :class="{ 'increase-disabled': incIsDisabled }"
+          class="split-equal"
           data-field="quantity"
         />
       </div>

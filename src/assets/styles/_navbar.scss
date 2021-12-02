@@ -12,6 +12,9 @@ header {
         width: 80%;
         padding-bottom: 2em;
         border-bottom: 1px solid $grayisBlue;
+        .header__menu {
+            display: none;
+        }
         div {
             display: flex;
             align-items: center;
@@ -124,5 +127,14 @@ header {
                 }
             }
         }
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .header__menu {
+        display: block;
+    }
+    nav {
+        display: none;
     }
 }
