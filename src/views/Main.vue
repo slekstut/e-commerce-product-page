@@ -5,10 +5,12 @@
       <div class="content__inner">
         <div class="preview__content">
           <div class="preview__main" @click="openModal">
-            <img
-              :src="require(`../assets/img/image-product-${mainPicture}.jpg`)"
-              alt="`product-${mainPicture}`"
-            />
+            <div v-for="slide in slides" v-show="slide == active" :key="slide">
+              <img
+                class="main__image"
+                :src="require(`../assets/img/image-product-${slide}.jpg`)"
+              />
+            </div>
             <div class="backwards" @click="move(-1)">
               <svg
                 class="left-arrow"
@@ -87,6 +89,8 @@ export default {
       thumbnails: 4,
       activeThumbnail: 2,
       mainPicture: 1,
+       active: 1,
+      slides: 4,
     };
   },
   methods: {
@@ -97,6 +101,16 @@ export default {
       this.activeThumbnail = i;
       this.mainPicture = i;
     },
+     move(amount) {
+      let newActive;
+      const newIndex = this.active + amount;
+      if (newIndex > this.slides) newActive = 1;
+      if (newIndex === 0) newActive = this.slides;
+      this.active = newActive || newIndex;
+    },
+    //  showSelected(i) {
+    //   this.active = i;
+    // },
   },
 };
 </script>
