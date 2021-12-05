@@ -127,3 +127,9 @@ body {
         }
     }
 }
+
+@media only screen and (max-width: 600px) {
+    .preview__modal {
+        display: none;
+    }
+}

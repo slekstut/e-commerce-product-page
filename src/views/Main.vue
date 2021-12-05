@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="content__wrapper">
+    <div class="content__wrapper container">
       <PreviewModal></PreviewModal>
       <div class="content__inner">
         <div class="preview__content">
@@ -9,6 +9,26 @@
               :src="require(`../assets/img/image-product-${mainPicture}.jpg`)"
               alt="`product-${mainPicture}`"
             />
+            <div class="backwards" @click="move(-1)">
+              <svg
+                class="left-arrow"
+                width="12"
+                height="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M11 1 3 9l8 8" fill-rule="evenodd" />
+              </svg>
+            </div>
+            <div class="forwards" @click="move(1)">
+              <svg
+                class="right-arrow"
+                width="13"
+                height="18"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="m2 1 8 8-8 8" fill="none" fill-rule="evenodd" />
+              </svg>
+            </div>
           </div>
           <div class="preview__thumbnail">
             <div v-for="thumbnail in thumbnails" :key="thumbnail">
@@ -84,4 +104,5 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables.scss";
 @import "../assets/styles/main.scss";
+
 </style>

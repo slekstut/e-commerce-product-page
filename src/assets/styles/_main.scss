@@ -28,6 +28,16 @@
                         cursor: pointer;
                     }
                 }
+                .backwards {
+                    display: none;
+                    // visibility: hidden;
+                    // opacity: 0;
+                }
+                .forwards {
+                    display: none;
+                    // visibility: hidden;
+                    // opacity: 0;
+                }
             }
             .preview__thumbnail {
                 display: grid;
@@ -57,10 +67,6 @@
         }
         .description__content {
             display: grid;
-            // grid-column-start: 2;
-            // grid-column-end: 2;
-            // grid-row-start: 1;
-            // grid-row-end: 1;
             .description__text {
                 display: grid;
                 align-items: end;
@@ -138,6 +144,7 @@ input[type=number] {
         .content__inner {
             display: grid;
             gap: .3rem;
+            width: 70%;
             .preview__content {
                 display: grid;
                 grid-column: 1/3;
@@ -145,8 +152,56 @@ input[type=number] {
                 gap: 3rem;
                 height: 100%;
                 .preview__main {
+                    width: 120% !important;
+                    position: relative;
                     img {
                         border-radius: 0;
+                    }
+                    .backwards {
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        left: 5%;
+                        background-color: $white;
+                        margin: 0;
+                        border-radius: 2rem;
+                        padding: .3rem .6rem;
+                        .left-arrow {
+                            fill: none;
+                            stroke: $black;
+                            stroke-width: 3;
+                            transform: translateX(-0.1em) translateY(0.1em);
+                        }
+                        &:hover {
+                            cursor: pointer;
+                        }
+                        &:hover .left-arrow {
+                            stroke: $orange;
+                            cursor: pointer;
+                        }
+                    }
+                    .forwards {
+                        display: block;
+                        position: absolute;
+                        top: 50%;
+                        right: 5%;
+                        background-color: $white;
+                        margin: 0;
+                        border-radius: 2rem;
+                        padding: .3rem .6rem;
+                        &:hover {
+                            cursor: pointer;
+                        }
+                        .right-arrow {
+                            fill: none;
+                            stroke: $black;
+                            stroke-width: 3;
+                            transform: translateX(0.1em) translateY(0.1em);
+                        }
+                        &:hover .right-arrow {
+                            stroke: $orange;
+                            cursor: pointer;
+                        }
                     }
                 }
                 .preview__thumbnail {
@@ -159,6 +214,14 @@ input[type=number] {
                 display: grid;
                 grid-column: 1/3;
                 grid-row: 2/3;
+                .description__text {
+                    h3 {
+                        letter-spacing: .1rem;
+                    }
+                    p {
+                        font-size: 1rem;
+                    }
+                }
                 .description__options {
                     .spaced-between {
                         display: grid;
