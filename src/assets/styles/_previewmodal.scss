@@ -75,6 +75,9 @@ body {
                 top: -2rem;
                 &:hover {
                     cursor: pointer;
+                    svg path {
+                        fill: $orange;
+                    }
                 }
                 svg path {
                     fill: $white;

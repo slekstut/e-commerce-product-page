@@ -47,7 +47,7 @@
             </div>
           </div>
         </div>
-        <div class="description__content">
+        <div class="description__content container">
           <div class="description__text">
             <div>
               <h3>Sneaker Company</h3>
@@ -67,7 +67,7 @@
               </div>
               <h4>$250.00</h4>
             </div>
-              <QuantityInput></QuantityInput>
+            <QuantityInput></QuantityInput>
           </div>
         </div>
       </div>
@@ -87,9 +87,9 @@ export default {
   data() {
     return {
       thumbnails: 4,
-      activeThumbnail: 2,
+      activeThumbnail: 1,
       mainPicture: 1,
-       active: 1,
+      active: 1,
       slides: 4,
     };
   },
@@ -101,16 +101,13 @@ export default {
       this.activeThumbnail = i;
       this.mainPicture = i;
     },
-     move(amount) {
+    move(amount) {
       let newActive;
       const newIndex = this.active + amount;
       if (newIndex > this.slides) newActive = 1;
       if (newIndex === 0) newActive = this.slides;
       this.active = newActive || newIndex;
     },
-    //  showSelected(i) {
-    //   this.active = i;
-    // },
   },
 };
 </script>
@@ -118,5 +115,4 @@ export default {
 <style lang="scss">
 @import "../assets/styles/variables.scss";
 @import "../assets/styles/main.scss";
-
 </style>
