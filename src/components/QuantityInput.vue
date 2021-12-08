@@ -30,7 +30,7 @@
           data-field="quantity"
         />
       </div>
-      <button>
+      <submit-button class="add-to-cart">
         <span
           ><svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -39,18 +39,21 @@
               fill-rule="nonzero"
             /></svg></span
         >Add to cart
-      </button>
+      </submit-button>
     </div>
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
+import SubmitButton from "../base/SubmitButton.vue";
 
 export default {
+  components: {
+    SubmitButton
+  },
   data() {
-    return {
-    };
+    return {};
   },
   methods: {
     incrementCounter() {
@@ -69,7 +72,7 @@ export default {
   computed: mapState({
     quantity: (state) => state.quantity,
     incIsDisabled: (state) => state.incIsDisabled,
-    decIsDisabled: state => state.decIsDisabled
+    decIsDisabled: (state) => state.decIsDisabled,
   }),
 };
 </script>

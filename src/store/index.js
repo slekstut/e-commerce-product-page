@@ -13,6 +13,8 @@ export default new Vuex.Store({
         decIsDisabled: false,
         stepIncr: 1,
         stepDecr: -1,
+        isActiveCart: false,
+        isActiveMenu: false
     },
     mutations: {
         toggleModal(state) {
@@ -34,6 +36,12 @@ export default new Vuex.Store({
                 state.quantity - payload.amount;
             state.decIsDisabled = state.quantity === 1 ? true : false;
         },
+        toggleCart(state) {
+            state.isActiveCart = !state.isActiveCart;
+        },
+        toggleMenu(state) {
+            state.isActiveMenu = !state.isActiveMenu
+        }
     },
     actions: {
         increment(context, payload) {
@@ -44,6 +52,7 @@ export default new Vuex.Store({
         }
     },
     getters: {
-        showModal: state => state.showModal
+        showModal: state => state.showModal,
+        isActiveCart: state => state.isActiveCart
     },
 });

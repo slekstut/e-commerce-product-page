@@ -1,0 +1,64 @@
+<template>
+  <div>
+    <div class="header__cart-active" id="cart-active-mobile" v-if="showCart">
+      <div>
+        <div class="cart__title"><h4>Cart</h4></div>
+        <div class="cart__body" v-if="isEmptyCart">
+          <span v-if="isEmptyCart">Your cart is empty.</span>
+        </div>
+        <div class="cart__body cart__items" v-if="!isEmptyCart">
+          <div class="cart__items-inline">
+            <img
+              :src="require(`@/assets/img/image-product-1-thumbnail.jpg`)"
+              alt="product-1"
+            />
+            <div>
+              <p>Autumn Limited Edition...</p>
+              <p>$125.00 x 3 <span>$375.00</span></p>
+            </div>
+            <div>
+              <svg
+                width="14"
+                height="16"
+                xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+              >
+                <defs>
+                  <path
+                    d="M0 2.625V1.75C0 1.334.334 1 .75 1h3.5l.294-.584A.741.741 0 0 1 5.213 0h3.571a.75.75 0 0 1 .672.416L9.75 1h3.5c.416 0 .75.334.75.75v.875a.376.376 0 0 1-.375.375H.375A.376.376 0 0 1 0 2.625Zm13 1.75V14.5a1.5 1.5 0 0 1-1.5 1.5h-9A1.5 1.5 0 0 1 1 14.5V4.375C1 4.169 1.169 4 1.375 4h11.25c.206 0 .375.169.375.375ZM4.5 6.5c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Zm3 0c0-.275-.225-.5-.5-.5s-.5.225-.5.5v7c0 .275.225.5.5.5s.5-.225.5-.5v-7Z"
+                    id="a"
+                  />
+                </defs>
+                <use fill="#C3CAD9" fill-rule="nonzero" xlink:href="#a" />
+              </svg>
+            </div>
+          </div>
+          <submit-button class="checkout-btn">Checkout</submit-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+import SubmitButton from "../base/SubmitButton.vue";
+
+export default {
+  components: { SubmitButton },
+  data() {
+    return {
+      isEmptyCart: false,
+    };
+  },
+  methods: {},
+  computed: {
+    showCart() {
+      return this.$store.state.isActiveCart;
+    },
+  },
+};
+</script>
+
+<style lang="scss">
+@import "../assets/styles/cart.scss";
+</style>
