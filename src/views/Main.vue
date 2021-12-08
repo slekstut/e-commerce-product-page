@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="content__wrapper container">
+    <div class="content__wrapper">
       <PreviewModal></PreviewModal>
       <div class="content__inner">
         <div class="preview__content">
@@ -47,7 +47,7 @@
             </div>
           </div>
         </div>
-        <div class="description__content container">
+        <div class="description__content">
           <div class="description__text">
             <div>
               <h3>Sneaker Company</h3>

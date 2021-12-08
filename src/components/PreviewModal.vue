@@ -79,7 +79,7 @@ export default {
       if (newIndex === 0) newActive = this.slides;
       this.active = newActive || newIndex;
     },
-     showSelected(i) {
+    showSelected(i) {
       this.active = i;
     },
   },

@@ -50,7 +50,7 @@ import SubmitButton from "../base/SubmitButton.vue";
 
 export default {
   components: {
-    SubmitButton
+    SubmitButton,
   },
   data() {
     return {};
