@@ -63,6 +63,9 @@
                         place-content: center;
                         svg {
                             align-self: end;
+                            &:hover {
+                                cursor: pointer;
+                            }
                         }
                         p {
                             padding: 0;
@@ -79,6 +82,9 @@
                 }
                 .checkout-btn {
                     box-shadow: none;
+                    font-size: .8rem;
+                    font-weight: 700;
+                    letter-spacing: .1rem;
                 }
             }
         }
