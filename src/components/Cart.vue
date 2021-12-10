@@ -1,22 +1,22 @@
 <template>
   <div>
-    <div class="header__cart-active" id="cart-active-mobile" v-if="showCart">
+    <div class="header__cart-active" id="cart-active-mobile" v-if="isActiveCart">
       <div>
         <div class="cart__title"><h4>Cart</h4></div>
-        <div class="cart__body" v-if="isEmptyCart">
-          <span v-if="isEmptyCart">Your cart is empty.</span>
+        <div class="cart__body" v-if="cartTotal">
+          <span>Your cart is empty.</span>
         </div>
-        <div class="cart__body cart__items" v-if="!isEmptyCart">
+        <div class="cart__body cart__items" v-if="!cartTotal">
           <div class="cart__items-inline">
             <img
               :src="require(`@/assets/img/image-product-1-thumbnail.jpg`)"
               alt="product-1"
             />
             <div>
-              <p>Autumn Limited Edition...</p>
-              <p>$125.00 x 3 <span>$375.00</span></p>
+              <p>Fall Limited Edition Sneakers</p>
+              <p>$125.00 x {{quantity}} <span>${{ totalPrice }}</span></p>
             </div>
-            <div>
+            <div @click="deleteCartItem">
               <svg
                 width="14"
                 height="16"
@@ -41,21 +41,34 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+import { mapGetters } from 'vuex';
 import SubmitButton from "../base/SubmitButton.vue";
 
 export default {
   components: { SubmitButton },
   data() {
     return {
-      isEmptyCart: false,
+      
     };
   },
-  methods: {},
-  computed: {
-    showCart() {
-      return this.$store.state.isActiveCart;
-    },
+  methods: {
+    deleteCartItem() {
+      this.$store.dispatch('deleteCartItem');
+    }
   },
+  computed: {
+    ...mapState({
+    quantity: (state) => state.quantity,
+    incIsDisabled: (state) => state.incIsDisabled,
+    decIsDisabled: (state) => state.decIsDisabled,
+    isActiveCart: (state) => state.isActiveCart,
+  }),
+    ...mapGetters({
+    cartTotal: 'isCartNotEmpty',
+    totalPrice: 'totalPrice'
+  }),
+  }
 };
 </script>
 

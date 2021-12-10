@@ -30,7 +30,8 @@
           data-field="quantity"
         />
       </div>
-      <submit-button class="add-to-cart">
+      <div @click="addItemsToCart">
+      <submit-button class="add-to-cart" >
         <span
           ><svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -40,6 +41,7 @@
             /></svg></span
         >Add to cart
       </submit-button>
+      </div>
     </div>
   </div>
 </template>
@@ -68,6 +70,9 @@ export default {
         event.preventDefault();
       }
     },
+    addItemsToCart() {
+      this.$store.dispatch('addToCart');
+    }
   },
   computed: mapState({
     quantity: (state) => state.quantity,
