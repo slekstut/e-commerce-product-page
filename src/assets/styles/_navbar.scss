@@ -120,7 +120,15 @@
                 }
             }
             nav {
-                display: none;
+                width: 100%;
+                height: 100%;
+                transform: translateX(-1000px);
+                position: absolute;
+                transition: 0.5s;
+                z-index: 8000;
+                ul {
+                    opacity: 0;
+                }
             }
             .active {
                 display: flex;
@@ -133,6 +141,9 @@
                 z-index: 9999;
                 margin: 0;
                 width: 100%;
+                height: 100%;
+                transform: translateX(0);
+                transition: 0.8s;
                 ul {
                     display: flex;
                     flex-direction: column;
@@ -140,6 +151,7 @@
                     background-color: $white;
                     margin: 0;
                     width: 70%;
+                    opacity: 1;
                     .preview__container-close {
                         display: block;
                         margin: 2.5rem 0;
@@ -163,6 +175,31 @@
                 }
             }
         }
+    }
+    
+    .side-collapse-container {
+        width: 100%;
+        position: relative;
+        left: 0;
+        transition: left .4s;
+    }
+    
+    .side-collapse-container.out {
+        left: 200px;
+    }
+    
+    .side-collapse {
+        top: 50px;
+        bottom: 0;
+        left: 0;
+        width: 200px;
+        position: fixed;
+        overflow: hidden;
+        transition: width .4s;
+    }
+    
+    .side-collapse.in {
+        width: 0;
     }
     
     @media screen and (max-width: 56.25rem) and (min-width: 46.875rem) {
