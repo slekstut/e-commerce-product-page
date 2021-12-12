@@ -4,12 +4,14 @@
       <div class="preview__wrapper">
         <div class="preview__container">
           <div class="preview__main">
-            <div v-for="slide in slides" v-show="slide == active" :key="slide">
+          <transition-group tag="div" name="slide-fade" class="transition-group">
+            <div v-for="pic in product.thumbnails" v-show="pic == active" :key="pic">
               <img
-                class="main__image"
-                :src="require(`../assets/img/image-product-${slide}.jpg`)"
+                class="main__image card"
+                :src="require(`../assets/img/image-product-${pic}.jpg`)"
               />
             </div>
+            </transition-group>
             <div class="preview__container-close" @click="closeModal">
               <svg width="14" height="15" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -41,7 +43,7 @@
             </div>
           </div>
           <div class="preview__thumbnail">
-            <div v-for="thumbnail in slides" :key="thumbnail">
+            <div v-for="thumbnail in product.thumbnails" :key="thumbnail">
               <div :class="{ selected: thumbnail == active }">
                 <div class="img-container" @click="showSelected(thumbnail)">
                   <img
@@ -61,6 +63,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
   data() {
     return {
@@ -84,6 +88,9 @@ export default {
     },
   },
   computed: {
+    ...mapGetters({
+      product: 'product'
+    }),
     showModal() {
       return this.$store.state.showModal;
     },

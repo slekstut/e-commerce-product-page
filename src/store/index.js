@@ -5,6 +5,17 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
     state: {
+        product: {
+            company: "Sneaker Company",
+            title: "Fall Limited Edition Sneakers",
+            description: "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.",
+            price: 125.00,
+            discount: 50,
+            priceBefore: 250.00,
+            stock: 5,
+            thumbnails: 4,
+
+        },
         showModal: false,
         incIsDisabled: false,
         decIsDisabled: false,
@@ -106,8 +117,6 @@ export default new Vuex.Store({
             total = state.itemPrice * state.cartItemQuantity;
             commit('addToCart', { value: total })
             commit('isCartEmpty', { value: false })
-            localStorage.setItem('cart-product-quantity', state.cartItemQuantity)
-            localStorage.setItem('total-cart-price', state.totalPrice)
         },
         deleteCartItem({ commit }) {
             commit('isCartEmpty', { value: true })
@@ -117,17 +126,19 @@ export default new Vuex.Store({
             commit('stockCount', { value: 5 })
             commit('addToCart', { value: 0 })
             commit('currQuantityValue', { quantity: 1 })
-            localStorage.removeItem('product-quantity')
-            localStorage.removeItem('total-cart-price')
         }
     },
     getters: {
+        product: state => state.product,
         showModal: state => state.showModal,
         isActiveCart: state => state.isActiveCart,
+        isActiveMenu: state => state.isActiveMenu,
         totalPrice: state => state.totalPrice,
         isCartNotEmpty: state => state.isCartNotEmpty,
         cartItemQuantity: state => state.cartItemQuantity,
         displayError: state => state.error,
-        showQuantity: state => state.quantity
+        showQuantity: state => state.quantity,
+        incIsDisabled: (state) => state.incIsDisabled,
+        decIsDisabled: (state) => state.decIsDisabled,
     },
 });

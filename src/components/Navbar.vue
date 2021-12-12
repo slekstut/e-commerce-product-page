@@ -69,7 +69,6 @@
 
 <script>
 import { directive as onClickaway } from "vue-clickaway";
-import { mapState } from 'vuex';
 import { mapGetters } from 'vuex';
 import Cart from "./Cart.vue";
 
@@ -77,9 +76,6 @@ export default {
   components: { Cart },
   directives: {
     onClickaway: onClickaway,
-  },
-  data() {
-    return {};
   },
   methods: {
     toggleActiveCart() {
@@ -93,14 +89,11 @@ export default {
     }
   },
   computed:{ 
-    ...mapState({
-    isActiveMenu: (state) => state.isActiveMenu,
-    isActiveCart: (state) => state.isActiveCart,
-    quantity: (state) => state.quantity,
-  }),
   ...mapGetters({
     cartTotal: 'isCartNotEmpty',
-    totalItems: 'cartItemQuantity'
+    totalItems: 'cartItemQuantity',
+    isActiveCart: 'isActiveCart',
+    isActiveMenu: 'isActiveMenu'
   }),
   }
 };

@@ -41,7 +41,6 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
 import { mapGetters } from 'vuex';
 import SubmitButton from "../base/SubmitButton.vue";
 
@@ -58,16 +57,11 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-    quantity: (state) => state.quantity,
-    incIsDisabled: (state) => state.incIsDisabled,
-    decIsDisabled: (state) => state.decIsDisabled,
-    isActiveCart: (state) => state.isActiveCart,
-  }),
     ...mapGetters({
     cartTotal: 'isCartNotEmpty',
     totalPrice: 'totalPrice',
-    totalItems: 'cartItemQuantity'
+    totalItems: 'cartItemQuantity',
+    isActiveCart: 'isActiveCart'
   }),
   }
 };

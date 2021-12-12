@@ -6,7 +6,7 @@
           @click="decrementCounter()"
           type="button"
           value="-"
-          :class="{ 'decrease-disabled': decIsDisabled }"
+          :class="{ 'decrease-disabled': setDecDisabled }"
           class="split-equal"
           data-field="quantity"
         />
@@ -25,7 +25,7 @@
           @click="incrementCounter()"
           type="button"
           value="+"
-          :class="{ 'increase-disabled': incIsDisabled }"
+          :class="{ 'increase-disabled': setIncDisabled }"
           class="split-equal"
           data-field="quantity"
         />
@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import SubmitButton from "../base/SubmitButton.vue";
 
 export default {
@@ -76,13 +76,11 @@ export default {
     }
   },
   computed: {
-    ...mapState({
-    incIsDisabled: (state) => state.incIsDisabled,
-    decIsDisabled: (state) => state.decIsDisabled,
-  }),
   ...mapGetters({
     errors: 'displayError',
-    setCurrentQuantity: 'showQuantity'
+    setCurrentQuantity: 'showQuantity',
+    setIncDisabled: 'incIsDisabled',
+    setDecDisabled: 'decIsDisabled'
   })
   }
 };
