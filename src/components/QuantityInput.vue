@@ -16,7 +16,7 @@
           step="1"
           :min="1"
           :max="5"
-          v-model="quantity"
+          v-model="setCurrentQuantity"
           name="quantity"
           class="quantity-field split-equal"
           onkeydown="return false"
@@ -31,7 +31,7 @@
         />
       </div>
       <div @click="addItemsToCart">
-      <submit-button class="add-to-cart" >
+      <submit-button class="add-to-cart">
         <span
           ><svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -41,13 +41,14 @@
             /></svg></span
         >Add to cart
       </submit-button>
+      <div class="error" v-if="errors">{{errors}} error</div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapGetters } from "vuex";
 import SubmitButton from "../base/SubmitButton.vue";
 
 export default {
@@ -74,11 +75,16 @@ export default {
       this.$store.dispatch('addToCart');
     }
   },
-  computed: mapState({
-    quantity: (state) => state.quantity,
+  computed: {
+    ...mapState({
     incIsDisabled: (state) => state.incIsDisabled,
     decIsDisabled: (state) => state.decIsDisabled,
   }),
+  ...mapGetters({
+    errors: 'displayError',
+    setCurrentQuantity: 'showQuantity'
+  })
+  }
 };
 </script>
 

@@ -44,7 +44,7 @@
           </nav>
         </div>
         <div>
-          <div class="header__cart">
+          <div class="header__cart" v-on-clickaway="hideCartOnClickAway">
             <div @click="toggleActiveCart">
               <svg :class="{ 'black-font': isActiveCart }" width="22" height="20">
                 <path
@@ -55,7 +55,7 @@
               </svg>
             </div>
             <div class="header__cart-items-added" v-if="!cartTotal">
-              <span>{{ quantity }}</span>
+              <span>{{ totalItems }}</span>
             </div>
           </div>
           <div class="header__avatar">
@@ -68,16 +68,16 @@
 </template>
 
 <script>
-// import { directive as onClickaway } from "vue-clickaway";
+import { directive as onClickaway } from "vue-clickaway";
 import { mapState } from 'vuex';
 import { mapGetters } from 'vuex';
 import Cart from "./Cart.vue";
 
 export default {
   components: { Cart },
-  // directives: {
-  //   onClickaway: onClickaway,
-  // },
+  directives: {
+    onClickaway: onClickaway,
+  },
   data() {
     return {};
   },
@@ -88,6 +88,9 @@ export default {
     toggleActiveMenu() {
       this.$store.commit("toggleMenu");
     },
+    hideCartOnClickAway() {
+      this.$store.commit("hideOnClickAway", { value: false })
+    }
   },
   computed:{ 
     ...mapState({
@@ -96,7 +99,8 @@ export default {
     quantity: (state) => state.quantity,
   }),
   ...mapGetters({
-    cartTotal: 'isCartNotEmpty'
+    cartTotal: 'isCartNotEmpty',
+    totalItems: 'cartItemQuantity'
   }),
   }
 };

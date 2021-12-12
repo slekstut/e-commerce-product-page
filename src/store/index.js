@@ -6,18 +6,18 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     state: {
         showModal: false,
-        quantity: 0,
-        quantityMin: 1,
-        quantityMax: 5,
         incIsDisabled: false,
         decIsDisabled: false,
-        stepIncr: 1,
-        stepDecr: -1,
         isActiveCart: false,
         isActiveMenu: false,
+        quantity: 1,
+        quantityMin: 1,
+        stock: 5,
         isCartNotEmpty: true,
         totalPrice: 0,
         itemPrice: 125.00,
+        cartItemQuantity: 0,
+        error: ''
     },
     mutations: {
         toggleModal(state) {
@@ -38,6 +38,9 @@ export default new Vuex.Store({
         toggleCart(state) {
             state.isActiveCart = !state.isActiveCart;
         },
+        hideOnClickAway(state, payload) {
+            state.isActiveCart = payload.value;
+        },
         toggleMenu(state) {
             state.isActiveMenu = !state.isActiveMenu
         },
@@ -46,43 +49,76 @@ export default new Vuex.Store({
         },
         isCartEmpty(state, payload) {
             state.isCartNotEmpty = payload.value
-
+        },
+        cartItemQuantity(state, payload) {
+            state.cartItemQuantity = payload.value
+        },
+        displayError(state, payload) {
+            state.error = payload.value
+        },
+        currQuantityValue(state, payload) {
+            state.quantity = payload.quantity
+        },
+        stockCount(state, stockQuantity) {
+            state.stock = stockQuantity.value
         }
     },
     actions: {
         increment({ commit, state }, payload) {
             commit('decrementDisabled', { value: false })
-            const currQuantity = state.quantity =
-                state.quantity === state.quantityMax ?
-                state.quantityMax :
-                state.quantity + payload.amount;
-            commit('increment', currQuantity)
-            const disableState = currQuantity === state.quantityMax ? true : false;
-            commit('incrementDisabled', { value: disableState })
+            if (state.stock > 0) {
+                const currQuantity = state.quantity =
+                    state.quantity === state.stock ?
+                    state.stock :
+                    state.quantity + payload.amount;
+                commit('increment', currQuantity)
+                const disableState = currQuantity === state.stock ? true : false;
+                commit('incrementDisabled', { value: disableState })
+            }
+
         },
         decrement({ commit, state }, payload) {
             commit('incrementDisabled', { value: false })
-            const currQuantity = state.quantity =
-                state.quantity === state.quantityMin ?
-                state.quantityMin :
-                state.quantity - payload.amount;
-            commit('decrement', currQuantity)
-            const disabledState = currQuantity === state.quantityMin ? true : false;
-            commit('decrementDisabled', { value: disabledState })
+            if (state.stock <= state.stock) {
+                const currQuantity = state.quantity =
+                    state.quantity === state.quantityMin ?
+                    state.quantityMin :
+                    state.quantity - payload.amount;
+                commit('decrement', currQuantity)
+                const disabledState = currQuantity === state.quantityMin ? true : false;
+                commit('decrementDisabled', { value: disabledState })
+            }
+
         },
         addToCart({ commit, state }) {
-            console.log('activated btn')
-            const total = state.totalPrice += state.itemPrice * state.quantity
+            if (state.stock > 0) {
+                const totalItemsInCart = state.cartItemQuantity += state.quantity;
+                state.stock = state.stock - state.quantity;
+                commit('cartItemQuantity', { value: totalItemsInCart })
+                commit('currQuantityValue', { quantity: 1 })
+            } else {
+                commit('currQuantityValue', { quantity: 0 })
+                commit('decrementDisabled', { value: true })
+                console.log(`Out Of Stock, max available ${state.stock}`)
+                return commit('displayError', { value: `Out Of Stock, max available ${state.stock}`, quantity: 0 });
+            }
+            let total = 0;
+            total = state.itemPrice * state.cartItemQuantity;
             commit('addToCart', { value: total })
             commit('isCartEmpty', { value: false })
-                // state.isActiveCart = payload.value
-            localStorage.setItem('product-quantity', state.quantity)
+            localStorage.setItem('cart-product-quantity', state.cartItemQuantity)
             localStorage.setItem('total-cart-price', state.totalPrice)
-                // context.commit('addToCart', payload);
         },
         deleteCartItem({ commit }) {
             commit('isCartEmpty', { value: true })
+            commit('cartItemQuantity', { value: 0 })
+            commit('displayError', { value: '' });
+            commit('incrementDisabled', { value: false })
+            commit('stockCount', { value: 5 })
             commit('addToCart', { value: 0 })
+            commit('currQuantityValue', { quantity: 1 })
+            localStorage.removeItem('product-quantity')
+            localStorage.removeItem('total-cart-price')
         }
     },
     getters: {
@@ -90,5 +126,8 @@ export default new Vuex.Store({
         isActiveCart: state => state.isActiveCart,
         totalPrice: state => state.totalPrice,
         isCartNotEmpty: state => state.isCartNotEmpty,
+        cartItemQuantity: state => state.cartItemQuantity,
+        displayError: state => state.error,
+        showQuantity: state => state.quantity
     },
 });

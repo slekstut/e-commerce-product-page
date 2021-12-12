@@ -14,7 +14,7 @@
             />
             <div>
               <p>Fall Limited Edition Sneakers</p>
-              <p>$125.00 x {{quantity}} <span>${{ totalPrice }}</span></p>
+              <p>$125.00 x {{totalItems}} <span>${{ totalPrice }}</span></p>
             </div>
             <div @click="deleteCartItem">
               <svg
@@ -66,7 +66,8 @@ export default {
   }),
     ...mapGetters({
     cartTotal: 'isCartNotEmpty',
-    totalPrice: 'totalPrice'
+    totalPrice: 'totalPrice',
+    totalItems: 'cartItemQuantity'
   }),
   }
 };
