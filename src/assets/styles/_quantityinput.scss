@@ -43,6 +43,8 @@
         }
     }
     .add-to-cart {
+        width: 100%;
+        grid-column: span 3;
         span svg {
             padding-right: 1rem;
             path {

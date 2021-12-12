@@ -30,8 +30,8 @@
           data-field="quantity"
         />
       </div>
-      <div @click="addItemsToCart">
-      <submit-button class="add-to-cart">
+      <div @click="addItemsToCart" class="add-to-cart">
+      <submit-button >
         <span
           ><svg width="23" height="20" xmlns="http://www.w3.org/2000/svg">
             <path
