@@ -1,20 +1,21 @@
 <template>
-  <div id="app" :class="{ 'scroll-of': showMenu }">
+  <div id="app">
     <Navbar />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Navbar from "./components/Navbar.vue";
 export default {
   components: {
     Navbar,
   },
   computed: {
-    showMenu() {
-      return this.$store.state.isActiveMenu;
-    },
+    ...mapGetters({
+      navOpen: 'isActiveMenu'
+    })
   },
 };
 </script>
@@ -29,7 +30,7 @@ export default {
 
 @media only screen and (min-width: 75rem) {
   #app {
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 </style>

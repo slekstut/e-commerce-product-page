@@ -1,4 +1,5 @@
 module.exports = {
+    publicPath: '/e-commerce-product-page/',
     css: {
         loaderOptions: {
             sass: {
@@ -7,5 +8,5 @@ module.exports = {
           `
             }
         }
-    }
+    },
 };

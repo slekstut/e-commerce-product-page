@@ -36,14 +36,14 @@
                             color: $grayisBlue;
                             text-decoration: none;
                             position: relative;
-                            padding: 3.1rem 0;
+                            padding: 3rem 0;
                             font-size: .9rem;
                             &:hover {
                                 color: $darkGrayishBlue;
                             }
                             &::before {
                                 transition: 300ms;
-                                height: 5px;
+                                height: 0.3125rem;
                                 content: "";
                                 position: absolute;
                                 background-color: $orange;
